@@ -1,0 +1,236 @@
+/* ============================================================
+   Malnad Stories — Coming Soon
+   ============================================================ */
+
+:root {
+  --ink: #f3efe6;
+  --ink-soft: rgba(243, 239, 230, 0.72);
+  --gold: #f0b46a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #0a0e2a;
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 3D canvas ---------- */
+#scene {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: 0;
+}
+
+/* ---------- Vignette + grain ---------- */
+#vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 50% 30%, transparent 55%, rgba(0,0,0,0.45) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.15), transparent 25%, transparent 80%, rgba(0,0,0,0.30));
+  mix-blend-mode: multiply;
+}
+
+/* ---------- Text layout ---------- */
+main {
+  position: relative;
+  z-index: 2;
+}
+
+.panel {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 8vw;
+  pointer-events: none;
+}
+
+/* keep links/buttons clickable */
+.panel a, .scroll-hint { pointer-events: auto; }
+
+/* ---------- Hero ---------- */
+.panel-hero { flex-direction: column; gap: 0; }
+
+.hero-content { display: flex; flex-direction: column; align-items: center; }
+
+.eyebrow {
+  font-size: clamp(0.7rem, 1.4vw, 0.95rem);
+  letter-spacing: 0.55em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: clamp(1rem, 3vh, 2rem);
+  padding-left: 0.55em;
+}
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  line-height: 0.92;
+  font-size: clamp(3.2rem, 13vw, 11rem);
+  letter-spacing: 0.04em;
+  text-shadow: 0 8px 40px rgba(0,0,0,0.45);
+}
+.title span {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+.coming {
+  margin-top: clamp(0.8rem, 2.5vh, 1.6rem);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.45em;
+  text-transform: lowercase;
+  font-size: clamp(0.85rem, 1.8vw, 1.15rem);
+  color: var(--ink-soft);
+  padding-left: 0.45em;
+}
+
+/* ---------- Mid lines ---------- */
+.line {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1.6rem, 5vw, 3.6rem);
+  line-height: 1.25;
+  max-width: 18ch;
+  text-shadow: 0 6px 34px rgba(0,0,0,0.5);
+}
+
+/* ---------- End ---------- */
+.end-content { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+
+.end-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 8vw, 6rem);
+  letter-spacing: 0.14em;
+}
+.end-coming { margin-top: 0.2rem; }
+
+.notify {
+  margin-top: clamp(1.4rem, 4vh, 2.4rem);
+  display: inline-block;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.85em 1.8em;
+  border: 1px solid rgba(243,239,230,0.4);
+  border-radius: 100px;
+  backdrop-filter: blur(6px);
+  background: rgba(243,239,230,0.04);
+  transition: background 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
+}
+.notify:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #20160a;
+  transform: translateY(-2px);
+}
+
+.foot {
+  margin-top: clamp(2rem, 6vh, 4rem);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+
+/* ---------- Scroll hint ---------- */
+.scroll-hint {
+  position: absolute;
+  bottom: clamp(1.6rem, 5vh, 3rem);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--ink-soft);
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  animation: floaty 2.6s ease-in-out infinite;
+}
+.mouse {
+  width: 22px; height: 36px;
+  border: 1.5px solid var(--ink-soft);
+  border-radius: 12px;
+  position: relative;
+}
+.mouse i {
+  position: absolute;
+  top: 7px; left: 50%;
+  width: 3px; height: 7px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: var(--ink);
+  animation: wheel 1.8s ease-in-out infinite;
+}
+@keyframes wheel {
+  0% { opacity: 0; transform: translateY(0); }
+  35% { opacity: 1; }
+  70% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 0; }
+}
+@keyframes floaty {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ---------- Loader ---------- */
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: #0a0e2a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease 0.2s, visibility 1s ease 0.2s;
+}
+#loader.hidden { opacity: 0; visibility: hidden; }
+.loader-inner { display: flex; flex-direction: column; align-items: center; gap: 1.4rem; }
+.loader-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  padding-left: 0.3em;
+}
+.loader-bar {
+  width: 180px; height: 2px;
+  background: rgba(243,239,230,0.15);
+  overflow: hidden; border-radius: 2px;
+}
+.loader-bar span {
+  display: block; height: 100%; width: 0%;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+.loader-text {
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: lowercase;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 600px) {
+  .title { letter-spacing: 0.02em; }
+  .line { max-width: 16ch; }
+}

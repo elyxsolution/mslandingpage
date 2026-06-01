@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malnad Stories — Coming Soon</title>
+  <meta name="description" content="Malnad Stories — handcrafted trekking photo albums from the misty Western Ghats. Coming soon." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Loading screen -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-mark">M&middot;S</div>
+      <div class="loader-bar"><span></span></div>
+      <div class="loader-text">entering the mist&hellip;</div>
+    </div>
+  </div>
+
+  <!-- 3D canvas (fixed, full-screen) -->
+  <canvas id="scene"></canvas>
+
+  <!-- Vignette / grain overlay -->
+  <div id="vignette"></div>
+
+  <!-- Scroll-driven text overlays -->
+  <main>
+    <section class="panel panel-hero">
+      <div class="hero-content">
+        <p class="eyebrow">Western Ghats &middot; India</p>
+        <h1 class="title">MALNAD<br /><span>STORIES</span></h1>
+        <p class="coming">coming soon&hellip;</p>
+      </div>
+      <div class="scroll-hint">
+        <span>scroll</span>
+        <div class="mouse"><i></i></div>
+      </div>
+    </section>
+
+    <section class="panel panel-mid">
+      <p class="line">Albums born in the mist of the mountains.</p>
+    </section>
+
+    <section class="panel panel-mid">
+      <p class="line">Every trek, a story.<br />Every frame, a memory.</p>
+    </section>
+
+    <section class="panel panel-mid">
+      <p class="line">Handcrafted photo albums<br />from the trails of Malnad.</p>
+    </section>
+
+    <section class="panel panel-end">
+      <div class="end-content">
+        <h2 class="end-title">MALNAD STORIES</h2>
+        <p class="coming end-coming">coming soon&hellip;</p>
+        <a class="notify" href="mailto:hello@malnadstories.com?subject=Notify%20me%20when%20Malnad%20Stories%20launches">Notify me &rarr;</a>
+        <p class="foot">&copy; <span id="year"></span> Malnad Stories. Crafted in the hills.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Three.js (UMD global build — works on file://) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
