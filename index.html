@@ -60,7 +60,25 @@
       <div class="end-content">
         <h2 class="end-title">MALNAD STORIES</h2>
         <p class="coming end-coming">coming soon&hellip;</p>
-        <a class="notify" href="mailto:hello@malnadstories.com?subject=Notify%20me%20when%20Malnad%20Stories%20launches">Notify me &rarr;</a>
+
+        <button class="notify" id="connectBtn" type="button" aria-expanded="false">Connect now &rarr;</button>
+
+        <div class="contact-card" id="contactCard" role="dialog" aria-label="Contact card">
+          <div class="cc-avatar">SM</div>
+          <div class="cc-name">Suchith Mohare</div>
+          <div class="cc-role">Malnad Stories</div>
+          <div class="cc-links">
+            <a href="mailto:malnadstoriess@gmail.com">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 7L4 7v1l8 5 8-5V7l-8 5Z"/></svg>
+              malnadstoriess@gmail.com
+            </a>
+            <a href="tel:+910000000000">
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.5 15.5 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.6a1 1 0 0 1-.25 1l-2.22 2.2Z"/></svg>
+              +91 00000 00000
+            </a>
+          </div>
+        </div>
+
         <p class="foot">&copy; <span id="year"></span> Malnad Stories. Crafted in the hills.</p>
       </div>
     </section>
@@ -69,5 +87,16 @@
   <!-- Three.js (UMD global build — works on file://) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="app.js"></script>
+  <script>
+    (function () {
+      var btn = document.getElementById('connectBtn');
+      var card = document.getElementById('contactCard');
+      btn.addEventListener('click', function () {
+        var open = card.classList.toggle('show');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.textContent = open ? 'Hide' : 'Connect now →';
+      });
+    })();
+  </script>
 </body>
 </html>

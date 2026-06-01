@@ -144,6 +144,87 @@ main {
   transform: translateY(-2px);
 }
 
+/* keep the connect button clickable inside the panel */
+.panel button, .contact-card { pointer-events: auto; }
+
+.notify { cursor: pointer; font-family: 'Inter', sans-serif; }
+
+/* ---------- Contact card ---------- */
+.contact-card {
+  margin-top: 1.4rem;
+  width: min(320px, 82vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.8rem 1.6rem 1.6rem;
+  border-radius: 22px;
+  border: 1px solid rgba(243, 239, 230, 0.18);
+  background: rgba(20, 26, 48, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  /* hidden state */
+  opacity: 0;
+  transform: translateY(14px) scale(0.94);
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(.2,.8,.2,1),
+              transform 0.5s cubic-bezier(.2,.8,.2,1);
+}
+.contact-card.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.cc-avatar {
+  width: 62px; height: 62px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; letter-spacing: 0.08em;
+  color: #20160a;
+  background: linear-gradient(145deg, #f7d29b, var(--gold));
+  box-shadow: 0 6px 20px rgba(240, 180, 106, 0.4);
+  margin-bottom: 0.4rem;
+}
+.cc-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.cc-role {
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.7rem;
+}
+.cc-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+.cc-links a {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  justify-content: center;
+  font-size: 0.84rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.6em 0.8em;
+  border-radius: 12px;
+  background: rgba(243, 239, 230, 0.05);
+  border: 1px solid rgba(243, 239, 230, 0.08);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.cc-links a:hover { background: var(--gold); color: #20160a; }
+.cc-links svg { flex: none; opacity: 0.85; }
+
 .foot {
   margin-top: clamp(2rem, 6vh, 4rem);
   font-size: 0.75rem;
